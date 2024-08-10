@@ -6,7 +6,9 @@ import cors from "koa-cors";
 import { koaPlayground } from "graphql-playground-middleware";
 import { graphqlHTTP } from "koa-graphql";
 import { config } from "./config";
-import { schema } from "./schema/schema";
+import { accountSchema } from "./schema/account/schema";
+import { mergeSchemas } from "@graphql-tools/schema";
+import { transactionSchema } from "./schema/transaction/schema";
 
 const app = new Koa();
 const router = new Router();
@@ -37,11 +39,15 @@ router.all(
   }),
 );
 
+const schemas = mergeSchemas({
+  schemas: [accountSchema, transactionSchema],
+});
+
 const appGraphQL = convert(
   graphqlHTTP(async (request, response, koaContext) => {
     return {
       graphiql: config.NODE_ENV !== "production",
-      schema,
+      schema: schemas,
       rootValue: {
         request: koaContext.request,
       },
