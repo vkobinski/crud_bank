@@ -11,7 +11,7 @@ import { GraphQLContext } from "../../types";
 import TransactionType from "../../../src/modules/TransactionType";
 import Transaction from "../../../src/db/Transaction";
 import { GraphQLCPF } from "../account/cpf";
-import { TransactionConnection } from "src/relay/connection";
+import { TransactionConnection } from "../../../src/relay/connection";
 import { connectionArgs, connectionFromArray } from "graphql-relay";
 
 const { version } = packageJson;

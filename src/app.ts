@@ -43,6 +43,7 @@ const schemas = mergeSchemas({
   schemas: [accountSchema, transactionSchema],
 });
 
+
 const appGraphQL = convert(
   graphqlHTTP(async (request, response, koaContext) => {
     return {

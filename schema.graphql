@@ -1,51 +1,134 @@
-"""Exposes a URL that specifies the behaviour of this scalar."""
-directive @specifiedBy(
-  """The URL that specifies the behaviour of this scalar."""
-  url: String!
-) on SCALAR
+type Query {
+  version: String
+  relay_accounts(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
 
-input CreateUserInput {
-  name: String
+    """Returns the first n items from the list."""
+    first: Int
+
+    """Returns the items in the list that come before the specified cursor."""
+    before: String
+
+    """Returns the last n items from the list."""
+    last: Int
+  ): AccountConnection
+  accounts: [Account]
+  account(id: ID!): Account
+  transactions: [Transaction]
+  relay_transactions(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the first n items from the list."""
+    first: Int
+
+    """Returns the items in the list that come before the specified cursor."""
+    before: String
+
+    """Returns the last n items from the list."""
+    last: Int
+  ): TransactionConnection
+  transaction_for_cpf(cpf: CPF!): [Transaction]
+  transaction(id: ID!): Transaction
 }
 
-type CreateUserPayload {
-  user: User
+"""A connection to a list of items."""
+type AccountConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AccountEdge]
 }
 
-type Like {
-  count: Int!
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
 }
 
-type LikeNewPayload {
-  like: Like
+"""An edge in a connection."""
+type AccountEdge {
+  """The item at the end of the edge"""
+  node: Account
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type Account {
+  """The ID of an object"""
+  id: ID!
+  owner_name: String!
+  owner_cpf: String!
+  password: String!
+  balance: Float!
 }
 
 type Mutation {
-  """Create a new user"""
-  CreateUser(input: CreateUserInput): CreateUserPayload
+  """Create a new account"""
+  createAccount(input: CreateAccountInput): CreateAccountPayload
+
+  """Create a new transaction"""
+  createTransaction(input: CreateTransactionInput): CreateTransactionPayload
 }
 
-type Query {
-  version: String
-  me: User
-  users: [User]
-  user(id: ID!): User
-  talks: [Talk]
-  talk(id: ID!): Talk
+type CreateAccountPayload {
+  account: Account
 }
 
-type Subscription {
-  LikeNew: LikeNewPayload
+input CreateAccountInput {
+  owner_name: String
+  owner_cpf: CPF
+  password: String
+  balance: Float = 0
 }
 
-type Talk {
-  name: String!
-  description: String!
-  speaker: User!
-  host: User!
+"""Brazilian CPF number format"""
+scalar CPF
+
+type Transaction {
+  """The ID of an object"""
+  id: ID!
+  value: Float!
+  from: String!
+  to: String!
 }
 
-type User {
-  name: String!
+"""A connection to a list of items."""
+type TransactionConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [TransactionEdge]
 }
 
+"""An edge in a connection."""
+type TransactionEdge {
+  """The item at the end of the edge"""
+  node: Transaction
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type CreateTransactionPayload {
+  transaction: Transaction
+}
+
+input CreateTransactionInput {
+  from: CPF
+  to: CPF
+  value: Float
+}

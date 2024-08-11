@@ -6,7 +6,7 @@ import {
 } from "graphql";
 import TransactionType from "../../../src/modules/TransactionType";
 import { GraphQLCPF } from "../account/cpf";
-import Transaction from "../../../src/db/Transaction";
+import Transaction from "../../db/Transaction";
 import Account from "../../../src/db/Account";
 
 const CreateTransactionInputType = new GraphQLInputObjectType({

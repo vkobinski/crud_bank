@@ -10,7 +10,7 @@ import packageJson from "../../../package.json";
 import { GraphQLContext } from "../../types";
 import AccountType from "../../modules/AccountType";
 import Account from "../../db/Account";
-import { AccountConnection } from "src/relay/connection";
+import { AccountConnection } from "../../../src/relay/connection";
 import { connectionArgs, connectionFromArray } from "graphql-relay";
 
 const { version } = packageJson;

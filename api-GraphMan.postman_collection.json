@@ -1,0 +1,278 @@
+{
+    "info": {
+        "name": "localhost:5566-GraphMan",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Queries",
+            "item": [
+                {
+                    "name": "version",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query version {\n  version\n}",
+                                "variables": "{\n\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "relay_accounts",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query relay_accounts($after: String, $first: Int, $before: String, $last: Int) {\n  relay_accounts(after: $after, first: $first, before: $before, last: $last) {\n    __typename\n    # pageInfo # Information to aid in pagination.\n    # edges # A list of edges.\n  }\n}",
+                                "variables": "{\n\t\"after\": null,\n\t\"first\": null,\n\t\"before\": null,\n\t\"last\": null\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "accounts",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query accounts {\n  accounts {\n    __typename\n    id # The ID of an object\n    owner_name\n    owner_cpf\n    password\n    balance\n  }\n}",
+                                "variables": "{\n\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "account",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query account($id: ID!) {\n  account(id: $id) {\n    __typename\n    id # The ID of an object\n    owner_name\n    owner_cpf\n    password\n    balance\n  }\n}",
+                                "variables": "{\n\t\"id\": \"0\"\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "transactions",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query transactions {\n  transactions {\n    __typename\n    id # The ID of an object\n    value\n    from\n    to\n  }\n}",
+                                "variables": "{\n\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "relay_transactions",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query relay_transactions($after: String, $first: Int, $before: String, $last: Int) {\n  relay_transactions(after: $after, first: $first, before: $before, last: $last) {\n    __typename\n    # pageInfo # Information to aid in pagination.\n    # edges # A list of edges.\n  }\n}",
+                                "variables": "{\n\t\"after\": null,\n\t\"first\": null,\n\t\"before\": null,\n\t\"last\": null\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "transaction_for_cpf",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query transaction_for_cpf($cpf: CPF!) {\n  transaction_for_cpf(cpf: $cpf) {\n    __typename\n    id # The ID of an object\n    value\n    from\n    to\n  }\n}",
+                                "variables": "{\n\t\"cpf\": null\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "transaction",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "query transaction($id: ID!) {\n  transaction(id: $id) {\n    __typename\n    id # The ID of an object\n    value\n    from\n    to\n  }\n}",
+                                "variables": "{\n\t\"id\": \"0\"\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": null
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Mutations",
+            "item": [
+                {
+                    "name": "createAccount",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "mutation createAccount($input: CreateAccountInput) {\n  createAccount(input: $input) {\n    __typename\n    # account\n  }\n}",
+                                "variables": "{\n\t\"input\": null\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": "Create a new account"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "createTransaction",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "graphql",
+                            "graphql": {
+                                "query": "mutation createTransaction($input: CreateTransactionInput) {\n  createTransaction(input: $input) {\n    __typename\n    # transaction\n  }\n}",
+                                "variables": "{\n\t\"input\": null\n}"
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:5566/graphql",
+                            "protocol": "http",
+                            "host": [
+                                "localhost:5566"
+                            ],
+                            "path": [
+                                "graphql"
+                            ]
+                        },
+                        "description": "Create a new transaction"
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ]
+}

@@ -8,6 +8,7 @@ import db_connect from "./db/db";
 
   await db_connect();
 
+
   server.listen(config.PORT, () => {
     console.log(`server running at http://localhost:${config.PORT}`);
   });
