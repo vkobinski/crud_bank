@@ -45,7 +45,7 @@ const schemas = mergeSchemas({
 
 
 const appGraphQL = convert(
-  graphqlHTTP(async (request, response, koaContext) => {
+  graphqlHTTP(async (_request, _response, koaContext) => {
     return {
       graphiql: config.NODE_ENV !== "production",
       schema: schemas,

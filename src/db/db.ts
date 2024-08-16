@@ -1,9 +1,34 @@
 import mongoose from 'mongoose';
+import { connect } from 'mongoose';
 
 const mongoURI = "mongodb://localhost:27017/graphql-demo";
 
+const connectWithTimeout = async (mongoURI: string, timeoutMs: number) => {
+    const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Connection timed out')), timeoutMs)
+    );
+
+    const connectionPromise = connect(mongoURI, {
+        connectTimeoutMS: 0,
+        socketTimeoutMS: 0,
+    });
+
+    try {
+        const connection = await Promise.race([connectionPromise, timeoutPromise]);
+        return connection;
+    } catch (error) {
+
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
+
+        process.exit(1);
+    }
+};
+
 const db_connect = async () => {
-    await mongoose.connect(mongoURI);
+
+    await connectWithTimeout(mongoURI, 100);
 
     const db = mongoose.connection;
 
